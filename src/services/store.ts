@@ -1,4 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+
+import burgerBuilderSlice from './slices/burgerBuilderSlice/burgerBuilderSlice';
+
+import liveOrdersSlice from './slices/liveOrdersSlice/liveOrdersSlice';
+import accountSlice from './slices/TAccountSlice/TAccountSlice';
+import inventorySlice from './slices/inventorySlice/inventorySlice';
+import orderLookupSlice from './slices/orderLookupSlice/orderLookupSlice';
 
 import {
   TypedUseSelectorHook,
@@ -6,7 +13,13 @@ import {
   useSelector as selectorHook
 } from 'react-redux';
 
-const rootReducer = () => {}; // Заменить на импорт настоящего редьюсера
+export const rootReducer = combineReducers({
+  inventory: inventorySlice,
+  orderLookup: orderLookupSlice,
+  burgerBuilder: burgerBuilderSlice,
+  liveOrders: liveOrdersSlice,
+  account: accountSlice
+});
 
 const store = configureStore({
   reducer: rootReducer,
@@ -14,7 +27,6 @@ const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
-
 export type AppDispatch = typeof store.dispatch;
 
 export const useDispatch: () => AppDispatch = () => dispatchHook();
