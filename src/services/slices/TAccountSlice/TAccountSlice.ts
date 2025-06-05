@@ -54,9 +54,15 @@ export const loginAccount = createAsyncThunk(
   }
 );
 
-export const fetchCurrentUser = createAsyncThunk('account/fetchUser', getUserApi);
+export const fetchCurrentUser = createAsyncThunk(
+  'account/fetchUser',
+  getUserApi
+);
 
-export const fetchUserOrders = createAsyncThunk('account/fetchOrders', getOrdersApi);
+export const fetchUserOrders = createAsyncThunk(
+  'account/fetchOrders',
+  getOrdersApi
+);
 
 export const updateAccountInfo = createAsyncThunk(
   'account/update',

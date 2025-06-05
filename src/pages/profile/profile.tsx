@@ -1,11 +1,20 @@
 import { ProfileUI } from '@ui-pages';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../services/hooks';
+import {
+  fetchCurrentUser,
+  selectAccountState,
+  updateAccountInfo
+} from '../../services/slices/TAccountSlice/TAccountSlice';
+import { Preloader } from '@ui';
 
 export const Profile: FC = () => {
-  /** TODO: взять переменную из стора */
+  const { currentUser, isLoading } = useAppSelector(selectAccountState);
+  const dispatch = useAppDispatch();
+
   const user = {
-    name: '',
-    email: ''
+    name: currentUser?.name || '',
+    email: currentUser?.email || ''
   };
 
   const [formValue, setFormValue] = useState({
@@ -17,19 +26,25 @@ export const Profile: FC = () => {
   useEffect(() => {
     setFormValue((prevState) => ({
       ...prevState,
-      name: user?.name || '',
-      email: user?.email || ''
+      name: user.name || '',
+      email: user.email || ''
     }));
-  }, [user]);
+  }, [currentUser]);
 
   const isFormChanged =
-    formValue.name !== user?.name ||
-    formValue.email !== user?.email ||
+    formValue.name !== user.name ||
+    formValue.email !== user.email ||
     !!formValue.password;
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
+    dispatch(updateAccountInfo(formValue));
+    dispatch(fetchCurrentUser());
   };
+
+  if (isLoading) {
+    return <Preloader />;
+  }
 
   const handleCancel = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -56,6 +71,4 @@ export const Profile: FC = () => {
       handleInputChange={handleInputChange}
     />
   );
-
-  return null;
 };

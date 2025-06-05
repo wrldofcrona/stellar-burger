@@ -2,7 +2,6 @@ import { getOrderByNumberApi } from '../../../utils/burger-api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TOrder } from '../../../utils/types';
 
-
 type TOrderLookupState = {
   allOrders: TOrder[];
   orderDetails: TOrder | null;

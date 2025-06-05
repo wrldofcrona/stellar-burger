@@ -18,7 +18,10 @@ export const initialState: TLiveOrdersState = {
   fetchError: null
 };
 
-export const fetchLiveOrders = createAsyncThunk('liveOrders/fetchAll', getFeedsApi);
+export const fetchLiveOrders = createAsyncThunk(
+  'liveOrders/fetchAll',
+  getFeedsApi
+);
 
 export const liveOrdersSlice = createSlice({
   name: 'liveOrders',
