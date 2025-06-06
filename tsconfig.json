@@ -29,8 +29,5 @@
       "@selectors": ["src/services/selectors"]
     }
   },
-  "include": ["src",
-  "**/*.test.ts",
-  "**/*.test.tsx"
-  ]
+  "include": ["src"]
 }

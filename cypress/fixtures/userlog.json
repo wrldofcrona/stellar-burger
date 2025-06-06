@@ -1,9 +1,0 @@
-{
-  "success": true,
-  "accessToken": "lorem",
-  "refreshToken": "ipsum",
-  "user": {
-    "email": "yoursocai123@gmail.com",
-    "name": "babade"
-  }
-}
